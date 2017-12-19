@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 public class ScoresActivity extends AppCompatActivity implements View.OnClickListener{
     private boolean isFabOpen = false;
@@ -32,6 +35,8 @@ public class ScoresActivity extends AppCompatActivity implements View.OnClickLis
     private int counter =0;
     private TextView t2Total,t1Total,trix,complex;
 
+    private AdView mAdView;
+
     SharedPreferences prefs = null;
 
     @Override
@@ -40,6 +45,10 @@ public class ScoresActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_scores);
 
         prefs = getSharedPreferences("com.mycompany.myAppName", MODE_PRIVATE);
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         loadingResources();
 
@@ -218,6 +227,7 @@ public class ScoresActivity extends AppCompatActivity implements View.OnClickLis
                             .dimColor(R.color.black)
                             .cancelable(false)
             );
+            MobileAds.initialize(this, getResources().getString(R.string.AppIdTest));
 
             prefs.edit().putBoolean("firstrun", false).apply();
         }
