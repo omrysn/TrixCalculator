@@ -30,8 +30,7 @@ public class ScoresActivity extends AppCompatActivity implements View.OnClickLis
 
 
     private int counter =0;
-    private TextView t2Total;
-    private TextView t1Total;
+    private TextView t2Total,t1Total,trix,complex;
 
     SharedPreferences prefs = null;
 
@@ -57,6 +56,8 @@ public class ScoresActivity extends AppCompatActivity implements View.OnClickLis
         t1Total = findViewById(R.id.team1Total);
         t2Total = findViewById(R.id.team2Total);
 
+        trix = findViewById(R.id.trix);
+        complex = findViewById(R.id.complex);
 
         fab_close = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_close);
         fab_open = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_open);
@@ -91,14 +92,27 @@ public class ScoresActivity extends AppCompatActivity implements View.OnClickLis
             mfloat.startAnimation(rotate_backward);
             cfloat.startAnimation(fab_close);
             tfloat.startAnimation(fab_close);
+            trix.startAnimation(fab_close);
+            complex.startAnimation(fab_close);
             cfloat.setVisibility(View.GONE);
             tfloat.setVisibility(View.GONE);
+            cfloat.setClickable(false);
+            tfloat.setClickable(false);
+            trix.setVisibility(View.GONE);
+            complex.setVisibility(View.GONE);
         }else{
             mfloat.startAnimation(rotate_forward);
             cfloat.setVisibility(View.VISIBLE);
             tfloat.setVisibility(View.VISIBLE);
+            trix.setVisibility(View.VISIBLE);
+            complex.setVisibility(View.VISIBLE);
             cfloat.startAnimation(fab_open);
             tfloat.startAnimation(fab_open);
+            trix.startAnimation(fab_open);
+            complex.startAnimation(fab_open);
+            cfloat.setClickable(true);
+            tfloat.setClickable(true);
+
 
         }
 
